@@ -127,19 +127,24 @@ table:
 	aws dynamodb create-table \
 		--cli-input-json file://jsonfile/create-table.json \
 		--endpoint-url http://localhost:8000
-	
-.PHONY:
-set:
-	./script.sh source-data/asteroids_2022_10_p1.json &
-	./script.sh source-data/asteroids_2022_10_p2.json &
-	./script.sh source-data/asteroids_2022_10_p3.json &
-	./script.sh source-data/asteroids_2022_10_p4.json &
+	sleep 1
 	
 .PHONY:
 index:
 	aws dynamodb update-table \
 		--cli-input-json file://jsonfile/create-gsi-list.json \
 		--endpoint-url http://localhost:8000
+	sleep 1
+	
+.PHONY:
+set:
+	./script.sh source-data/asteroids_2022_10_p1.json
+	./script.sh source-data/asteroids_2022_10_p2.json
+	./script.sh source-data/asteroids_2022_10_p3.json
+	./script.sh source-data/asteroids_2022_10_p4.json
+
+.PHONY:
+db: table index set
 ```
 
 ### clean
@@ -148,6 +153,6 @@ index:
 clean:
 	rm -f objects_dynamo
 	rm -f objects_dynamo_linux
-	docker compose down
+	docker rm -f object-app
 	docker rmi -f light-object-app-dynamo:latest
 ```
