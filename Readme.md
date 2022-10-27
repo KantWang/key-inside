@@ -1,7 +1,7 @@
 # Shell script & Makefile
 
 ## Parsing json using shell script
-* Create dynamodb table
+### Create dynamodb table
 ```
 {
     "TableName": "Objects-shell",
@@ -24,7 +24,7 @@
 }
 ```
 
-* Create GSI
+### Create GSI
 ```
 {
     "TableName": "Objects-shell",
@@ -65,7 +65,7 @@
 }
 ```
 
-* set data
+### set data
 ```
 #!/bin/sh
 
@@ -91,7 +91,7 @@ done
 ```
 
 ## Makefile
-* run app(local)
+### run app(local)
 ```
 gen: design/design.go
 	goa gen objects-dynamo/design
@@ -105,7 +105,7 @@ run: build
 	./objects_dynamo
 ```
 
-* run app
+### run app
 ```
 .PHONY:
 build-linux: gen
@@ -120,7 +120,7 @@ app: build-linux image
 	docker compose up -d app
 ```
 
-* init db
+### init db
 ```
 .PHONY:
 table:
@@ -142,7 +142,7 @@ index:
 		--endpoint-url http://localhost:8000
 ```
 
-* clean
+### clean
 ```
 .PHONY:
 clean:
