@@ -65,7 +65,8 @@
 }
 ```
 
-### set data
+### Set data
+./script.sh source-data/asteroids_2022_10_p1.json
 ```
 #!/bin/sh
 
