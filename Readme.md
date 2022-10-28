@@ -102,6 +102,7 @@ build: gen objects_dynamo
 objects_dynamo:
 	go build -o $@ ./cmd/objects_dynamo
 
+.PHONY:
 run: build
 	./objects_dynamo
 ```
